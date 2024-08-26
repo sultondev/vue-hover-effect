@@ -1,0 +1,46 @@
+<script setup lang="ts">
+import HoverEffectContainer from './components/HoverEffectContainer.vue'
+import TestThreeJS from "@/components/TestThreeJS.vue";
+
+import Image1 from "@/img/Img22.jpg"
+import Image2 from "@/img/Img21.jpg"
+import displacementImg from "@/img/displacement/8.jpg"
+import {HoverEffectFnOptions} from "@/types";
+import {computed} from "vue";
+
+
+const HoverOptions = computed(() => ({
+    image1: '/img/Img22.jpg',
+    image2: '/img/Img21.jpg',
+    displacementImage: '/img/displacement/8.jpg'
+  })
+)
+</script>
+
+<template>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <HoverEffectContainer v-bind:options="HoverOptions" height="400px" width="400px" />
+<!--  <TestThreeJS />-->
+</template>
+
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>
