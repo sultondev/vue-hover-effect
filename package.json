@@ -1,16 +1,30 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
+  "files": [
+    "dist/*",
+    "dist-types/*"
+  ],
+  "main": "./dist/vue-hover-effect-library-ts.umd.js",
+  "module": "./dist/vue-hover-effect-library-ts.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-hover-effect-library-ts.es.js",
+      "require": "./dist/vue-hover-effect-library-ts.umd.js"
+    },
+    "./dist/vue-hover-effect-library-ts.css": {
+      "import": "./dist/vue-hover-effect-library-ts.css",
+      "require": "./dist/vue-hover-effect-library-ts.css"
+    }
+  },
+  "types": "./dist/main.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },
-  "files": [
-    "dist/*",
-    "dist-types/*"
-  ],
+
   "dependencies": {
     "vue": "^3.4.37"
   },
@@ -20,12 +34,16 @@
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
     "gsap": "3.11.4",
+    "path": "^0.12.7",
     "postcss-import": "^16.1.0",
     "postcss-nested-ancestors": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.36.0",
     "three": "0.150.1",
     "typescript": "^5.5.4",
     "vite": "^5.4.1",
     "vite-plugin-checker": "^0.7.2",
+    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-dts": "^4.0.3",
     "vite-tsconfig-paths": "^5.0.1",
     "vue-tsc": "^2.0.29"
   }
