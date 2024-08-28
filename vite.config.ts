@@ -42,35 +42,29 @@ export default defineConfig({
     cssCodeSplit: true,
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: "src/components/index.ts",
-      name: 'VueHoverEffectLibrary',
+      entry: "src/vue-hover-effect.ts",
+      name: 'vue-hover-effect',
       formats: ["es", "cjs", "umd"],
       fileName: format => `vue-hover-effect-library-ts.${format}.js`
     },
-    rollupOptions: {
-      // make sure to externalize deps that should not be bundled
-      // into your library
-      input: {
-        main: path.resolve(__dirname, "src/components/main.ts")
-      },
-      external: ['vue'],
-      output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'main.css') return 'my-library-vue-ts.css';
-          return assetInfo.name;
-        },
-        exports: "named",
-        globals: {
-          vue: 'Vue',
-        },
-      },
-    },
+    // rollupOptions: {
+    //   // make sure to externalize deps that should not be bundled
+    //   // into your library
+    //   input: {
+    //     main: path.resolve(__dirname, "src/components/")
+    //   },
+    //   external: ['vue'],
+    //   output: {
+    //     assetFileNames: (assetInfo) => {
+    //       if (assetInfo.name === 'main.css') return 'vue-hover-effect-library.css';
+    //       return assetInfo.name;
+    //     },
+    //     exports: "named",
+    //     globals: {
+    //       vue: 'Vue',
+    //     },
+    //   },
+    // },
   },
 })
 // define: { 'process.env.NODE_ENV': '"production"' },
-// build: {
-//   lib: {
-//     entry: path.resolve(__dirname, './src/vue-hover-effect.ts'),
-//     name: 'vue-hover-effect',
-//   },
-// },

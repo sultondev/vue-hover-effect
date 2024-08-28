@@ -1,10 +1,10 @@
-import { createApp } from 'vue'
-import './style.css'
-// import HoverEffectContainer from '@/components/HoverEffectContainer.vue'
+import type { App } from 'vue';
+import { HoverEffectContainer } from "src/components";
 
-import App from './App.vue'
+export default {
+	install: (app: App) => {
+		app.component('HoverEffectContainer', HoverEffectContainer);
+	}
+};
 
-createApp(App).mount('#app')
-
-// createApp(HoverEffectContainer).mount('#hover-effect-container')
-
+export { HoverEffectContainer };
