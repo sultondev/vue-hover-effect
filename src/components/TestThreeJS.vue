@@ -4,13 +4,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import testHover from "@/lib/test-hover.ts";
+import testHover from "src/lib/test-hover.ts";
 
 const threeContainer = ref(null);
 
 onMounted(() => {
   const parent = threeContainer.value
-  testHover(parent)
+  parent && testHover(parent)
 });
 </script>
 

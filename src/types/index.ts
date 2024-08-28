@@ -1,5 +1,5 @@
 export interface HoverEffectFnOptions {
-	parent: HTMLElement;
+	parent?: HTMLElement | null;
 	displacementImage: string;
 	image1: string;
 	image2: string;

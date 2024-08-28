@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import HoverEffectContainer from './components/HoverEffectContainer.vue'
-import TestThreeJS from "@/components/TestThreeJS.vue";
-
-import Image1 from "@/img/Img22.jpg"
-import Image2 from "@/img/Img21.jpg"
-import displacementImg from "@/img/displacement/8.jpg"
-import {HoverEffectFnOptions} from "@/types";
+import HoverEffectContainer from 'src/components/HoverEffectContainer.vue'
 import {computed} from "vue";
 
 
@@ -26,7 +20,7 @@ const HoverOptions = computed(() => ({
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HoverEffectContainer v-bind:options="HoverOptions" height="400px" width="400px" />
+  <HoverEffectContainer :options="HoverOptions" height="400px" width="400px" />
 <!--  <TestThreeJS />-->
 </template>
 

@@ -1,17 +1,18 @@
 import * as THREE from "three";
 import gsap from "gsap";
-import {HoverEffectFnOptions} from "../types";
+import { HoverEffectFnOptions } from "src/types";
 
 const HoverEffect = function(opts: HoverEffectFnOptions) {
-	var vertex = `
+	const vertex = `
 varying vec2 vUv;
 void main() {
   vUv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 }
 `;
-
-	var fragment = `
+	let texture1 = null;
+	let texture2 = null;
+	const fragment = `
 varying vec2 vUv;
 
 uniform float dispFactor;
@@ -55,27 +56,26 @@ void main() {
 		"color: #bada55; font-size: 0.8rem"
 	);
 
-	function firstDefined() {
-		for (var i = 0; i < arguments.length; i++) {
-			if (arguments[i] !== undefined) return arguments[i];
-		}
+	function firstDefined(...args: any) {
+		return args.find((arg: any) => arg !== undefined);
 	}
 
-	var parent = opts.parent;
-	var dispImage = opts.displacementImage;
-	var image1 = opts.image1;
-	var image2 = opts.image2;
-	var imagesRatio = firstDefined(opts.imagesRatio, 1.0);
-	var intensity1 = firstDefined(opts.intensity1, opts.intensity, 1);
-	var intensity2 = firstDefined(opts.intensity2, opts.intensity, 1);
-	var commonAngle = firstDefined(opts.angle, Math.PI / 4); // 45 degrees by default, so grayscale images work correctly
-	var angle1 = firstDefined(opts.angle1, commonAngle);
-	var angle2 = firstDefined(opts.angle2, -commonAngle * 3);
-	var speedIn = firstDefined(opts.speedIn, opts.speed, 1.6);
-	var speedOut = firstDefined(opts.speedOut, opts.speed, 1.2);
-	var userHover = firstDefined(opts.hover, true);
-	var easing = firstDefined(opts.easing, "expo.out");
-	var video = firstDefined(opts.video, false);
+
+	const parent = opts.parent;
+	const dispImage = opts.displacementImage;
+	const image1 = opts.image1;
+	const image2 = opts.image2;
+	const imagesRatio = firstDefined(opts.imagesRatio, 1.0);
+	const intensity1 = firstDefined(opts.intensity1, opts.intensity, 1);
+	const intensity2 = firstDefined(opts.intensity2, opts.intensity, 1);
+	const commonAngle = firstDefined(opts.angle, Math.PI / 4); // 45 degrees by default, so grayscale images work correctly
+	const angle1 = firstDefined(opts.angle1, commonAngle);
+	const angle2 = firstDefined(opts.angle2, -commonAngle * 3);
+	const speedIn = firstDefined(opts.speedIn, opts.speed, 1.6);
+	const speedOut = firstDefined(opts.speedOut, opts.speed, 1.2);
+	const userHover = firstDefined(opts.hover, true);
+	const easing = firstDefined(opts.easing, "expo.out");
+	let video = firstDefined(opts.video, false);
 
 	if (!parent) {
 		console.warn("Parent missing");
@@ -87,8 +87,8 @@ void main() {
 		return;
 	}
 
-	var scene = new THREE.Scene();
-	var camera = new THREE.OrthographicCamera(
+	const scene = new THREE.Scene();
+	const camera = new THREE.OrthographicCamera(
 		parent.offsetWidth / -2,
 		parent.offsetWidth / 2,
 		parent.offsetHeight / 2,
@@ -99,7 +99,7 @@ void main() {
 
 	camera.position.z = 1;
 
-	var renderer = new THREE.WebGLRenderer({
+	const renderer = new THREE.WebGLRenderer({
 		antialias: false,
 		alpha: true,
 	});
@@ -110,41 +110,41 @@ void main() {
 	renderer.domElement.id
 	parent.appendChild(renderer.domElement);
 
-	var render = function() {
+	const render = function() {
 		// This will be called by the TextureLoader as well as Gsap.
 		renderer.render(scene, camera);
 	};
 
-	var loader = new THREE.TextureLoader();
+	const loader = new THREE.TextureLoader();
 	loader.crossOrigin = "";
 
-	var disp = loader.load(dispImage, render);
+	const disp = loader.load(dispImage, render);
 	disp.magFilter = disp.minFilter = THREE.LinearFilter;
 
 	if (video) {
-		var animate = function() {
+		const animate = function() {
 			requestAnimationFrame(animate);
 
 			renderer.render(scene, camera);
 		};
 		animate();
 
-		var video = document.createElement("video");
+		video = document.createElement("video");
 		video.autoplay = true;
 		video.loop = true;
 		video.muted = true;
 		video.src = image1;
 		video.load();
 
-		var video2 = document.createElement("video");
+		let video2 = document.createElement("video");
 		video2.autoplay = true;
 		video2.loop = true;
 		video2.muted = true;
 		video2.src = image2;
 		video2.load();
 
-		var texture1 = new THREE.VideoTexture(video);
-		var texture2 = new THREE.VideoTexture(video2);
+		texture1 = new THREE.VideoTexture(video);
+		texture2 = new THREE.VideoTexture(video2);
 		texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
 		texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
 
@@ -177,14 +177,14 @@ void main() {
 			false
 		);
 	} else {
-		var texture1 = loader.load(image1, render);
-		var texture2 = loader.load(image2, render);
+		texture1 = loader.load(image1, render);
+		texture2 = loader.load(image2, render);
 		texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
 		texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
 	}
 
 	let a1, a2;
-	var imageAspect = imagesRatio;
+	const imageAspect = imagesRatio;
 	if (parent.offsetHeight / parent.offsetWidth < imageAspect) {
 		a1 = 1;
 		a2 = parent.offsetHeight / parent.offsetWidth / imageAspect;
@@ -194,42 +194,33 @@ void main() {
 	}
 
 	// @ts-ignore
-	var mat = new THREE.ShaderMaterial({
+	const mat = new THREE.ShaderMaterial({
 		uniforms: {
 			intensity1: {
-				type: "f",
 				value: intensity1
 			},
 			intensity2: {
-				type: "f",
 				value: intensity2
 			},
 			dispFactor: {
-				type: "f",
 				value: 0.0
 			},
 			angle1: {
-				type: "f",
 				value: angle1
 			},
 			angle2: {
-				type: "f",
 				value: angle2
 			},
 			texture1: {
-				type: "t",
 				value: texture1
 			},
 			texture2: {
-				type: "t",
 				value: texture2
 			},
 			disp: {
-				type: "t",
 				value: disp
 			},
 			res: {
-				type: "vec4",
 				value: new THREE.Vector4(
 					parent.offsetWidth,
 					parent.offsetHeight,
@@ -238,7 +229,6 @@ void main() {
 				)
 			},
 			dpr: {
-				type: "f",
 				value: window.devicePixelRatio
 			}
 		},
@@ -249,12 +239,12 @@ void main() {
 		opacity: 1.0
 	});
 
-	var geometry = new THREE.PlaneGeometry(
+	const geometry = new THREE.PlaneGeometry(
 		parent.offsetWidth,
 		parent.offsetHeight,
 		1
 	);
-	var object = new THREE.Mesh(geometry, mat);
+	const object = new THREE.Mesh(geometry, mat);
 	scene.add(object);
 
 	function transitionIn() {
@@ -284,7 +274,7 @@ void main() {
 		parent.addEventListener("touchend", transitionOut);
 	}
 
-	window.addEventListener("resize", function(e) {
+	window.addEventListener("resize", function() {
 		if (parent.offsetHeight / parent.offsetWidth < imageAspect) {
 			a1 = 1;
 			a2 = parent.offsetHeight / parent.offsetWidth / imageAspect;

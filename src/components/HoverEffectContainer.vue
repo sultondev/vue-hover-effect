@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {ref, onMounted, toRefs, computed, watch} from "vue"
-import HoverEffect from "../lib/hover-effect.ts";
-import {HoverEffectFnOptions} from "@/types";
-import Image1 from "@/img/Img22.jpg"
-import Image2 from "@/img/Img21.jpg"
-import displacementImg from "@/img/displacement/8.jpg"
+import {ref, onMounted, watch} from "vue"
+import HoverEffect from "src/lib/hover-effect.ts";
+import {HoverEffectFnOptions} from "src/types";
+import Image1 from "/img/Img22.jpg"
+import Image2 from "/img/Img21.jpg"
+
 interface PropTypes {
   height?: string
   width?: string
@@ -25,7 +25,7 @@ onMounted(()=> {
   })
 })
 
-watch(props.options, (value) => {
+watch(props.options, () => {
   const element = container.value
   HoverEffect({
     parent: element,
@@ -33,12 +33,12 @@ watch(props.options, (value) => {
   })
 })
 
-const style = computed(() => {
-  return $`
-    --box-height: ${height};
-    --box-width: ${width};
-  `
-})
+// const style = computed(() => {
+//   return `
+//     --box-height: ${height};
+//     --box-width: ${width};
+//   `
+// })
 </script>
 
 <template>

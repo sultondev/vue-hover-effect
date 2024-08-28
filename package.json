@@ -1,7 +1,5 @@
 {
   "name": "vue-hover-effect",
-  "main": "./dist/vue-hover-effect.mjs",
-  "types": "./dist-types/vue-hover-effect.d.ts",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -14,6 +12,7 @@
     "dist-types/*"
   ],
   "dependencies": {
+    "path": "^0.12.7",
     "vue": "^3.4.37"
   },
   "devDependencies": {
@@ -24,8 +23,11 @@
     "postcss-import": "^16.1.0",
     "postcss-nested-ancestors": "^3.0.0",
     "three": "0.150.1",
-    "typescript": "^5.5.3",
     "vite": "^5.4.1",
+    "@types/node": "^18.19.47",
+    "typescript": "^5.5.4",
+    "vite-plugin-checker": "^0.7.2",
+    "vite-tsconfig-paths": "^5.0.1",
     "vue-tsc": "^2.0.29"
   }
 }
