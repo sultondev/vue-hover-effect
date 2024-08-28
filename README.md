@@ -1,10 +1,14 @@
-# Vue 3 + TypeScript + Vite
+[Demo](https://vue-hover-effect.vercel.app/) | Soon will be playground
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Vite js was used to built this library
+Vue JS + TypeScript + Vite JS
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+
 # vue-hover-effect
+
+This library was built on top of [hover-effect](https://www.npmjs.com/package/hover-effect) library
 
 # Inspired from Robin Dela
 
 His [hover-effect](https://www.npmjs.com/package/hover-effect) package
+

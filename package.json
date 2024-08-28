@@ -1,6 +1,6 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,10 +12,10 @@
     "dist-types/*"
   ],
   "dependencies": {
-    "path": "^0.12.7",
     "vue": "^3.4.37"
   },
   "devDependencies": {
+    "@types/node": "^18.19.47",
     "@types/three": "^0.167.2",
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
@@ -23,9 +23,8 @@
     "postcss-import": "^16.1.0",
     "postcss-nested-ancestors": "^3.0.0",
     "three": "0.150.1",
-    "vite": "^5.4.1",
-    "@types/node": "^18.19.47",
     "typescript": "^5.5.4",
+    "vite": "^5.4.1",
     "vite-plugin-checker": "^0.7.2",
     "vite-tsconfig-paths": "^5.0.1",
     "vue-tsc": "^2.0.29"

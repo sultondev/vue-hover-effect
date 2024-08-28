@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { URL, fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import checker from "vite-plugin-checker";
-// import path from "path"
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -15,7 +15,6 @@ export default defineConfig({
     alias: {
       src: fileURLToPath(new URL('src', import.meta.url)),
       public: fileURLToPath(new URL('public', import.meta.url)),
-      // src: path.resolve(__dirname, 'src'),
     },
   },
 })
