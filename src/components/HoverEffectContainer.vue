@@ -2,8 +2,8 @@
 import {ref, onMounted, watch} from "vue"
 import HoverEffect from "src/lib/hover-effect.ts";
 import {HoverEffectFnOptions} from "src/types";
-import Image1 from "/img/Img22.jpg"
-import Image2 from "/img/Img21.jpg"
+// import Image1 from "/img/Img22.jpg"
+// import Image2 from "/img/Img21.jpg"
 
 interface PropTypes {
   height?: string
@@ -43,8 +43,8 @@ watch(props.options, () => {
 
 <template>
    <div ref="container" class="container">
-     <img :src="Image1" alt="Image" class="container__img" />
-     <img :src="Image2" alt="Image" class="container__img" />
+     <img :src="props.options.image1" alt="Image" class="container__img" />
+     <img :src="props.options.image2" alt="Image" class="container__img" />
    </div>
 </template>
 
