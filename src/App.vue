@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HoverEffectContainer from 'src/components/HoverEffectContainer.vue'
 import {computed} from "vue";
-import "src/style.css"
+// import "src/style.css"
 
 const HoverOptions = computed(() => ({
     image1: '/img/Img22.jpg',
