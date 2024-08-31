@@ -68,7 +68,7 @@ export default defineConfig(function (_a) {
                 input: {
                     main: path.resolve(__dirname, "src/components/index.ts")
                 },
-                external: ['vue'],
+                external: ['vue', "three", "gsap"],
                 output: {
                     assetFileNames: function (assetInfo) {
                         if (assetInfo.name === 'main.css')
@@ -78,8 +78,8 @@ export default defineConfig(function (_a) {
                     exports: "named",
                     globals: {
                         vue: 'Vue',
-                        //   three: 'THREE',
-                        //   gsap: 'gsap',
+                          three: 'THREE',
+                          gsap: 'gsap',
                     },
                 },
             },
