@@ -1,8 +1,8 @@
-export interface HoverEffectFnOptions {
+export type HoverEffectFnOptions = {
 	parent?: HTMLElement | null;
-	displacementImage: string;
-	image1: string;
-	image2: string;
+	displacementImage?: string;
+	image1?: string;
+	image2?: string;
 	imagesRatio?: number;
 	intensity1?: number;
 	intensity2?: number;

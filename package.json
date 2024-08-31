@@ -1,6 +1,6 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.6-beta.11",
+  "version": "0.0.6-beta.12",
   "type": "module",
   "files": [
     "dist/*",

@@ -40,7 +40,7 @@ export default defineConfig(({ command, mode })=>({
     },
   },
   build: {
-    cssCodeSplit: true,
+    // cssCodeSplit: true,
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: "src/vue-hover-effect.ts",
@@ -64,22 +64,22 @@ export default defineConfig(({ command, mode })=>({
       ].filter(Boolean),
       // make sure to externalize deps that should not be bundled
       // into your library
-      input: {
-        main: path.resolve(__dirname, "src/components/index.ts")
-      },
-      external: ['vue'],
-      output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
-          return assetInfo.name;
-        },
-        exports: "named",
-        globals: {
-          vue: 'Vue',
-          // three: 'THREE',
-          // gsap: 'gsap',
-        },
-      },
+      // input: {
+      //   main: path.resolve(__dirname, "src/components/index.ts")
+      // },
+      // external: ['vue'],
+      // output: {
+      //   assetFileNames: (assetInfo) => {
+      //     if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
+      //     return assetInfo.name;
+      //   },
+      //   exports: "named",
+      //   globals: {
+      //     vue: 'Vue',
+      //     // three: 'THREE',
+      //     // gsap: 'gsap',
+      //   },
+      // },
     },
   },
 }))

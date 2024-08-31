@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue';
 import checker from "vite-plugin-checker";
 import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-import * as path from 'path';
 import typescript2 from 'rollup-plugin-typescript2';
 import visualizer from "rollup-plugin-visualizer";
 // https://vitejs.dev/config/
@@ -41,13 +40,13 @@ export default defineConfig(function (_a) {
             },
         },
         build: {
-            cssCodeSplit: true,
+            // cssCodeSplit: true,
             lib: {
                 // Could also be a dictionary or array of multiple entry points
                 entry: "src/vue-hover-effect.ts",
                 name: 'vue-hover-effect',
-                formats: ["es", "cjs", "umd"],
-                fileName: function (format) { return "vue-hover-effect.".concat(format, ".js"); }
+                // formats: ["es", "cjs", "umd"],
+                // fileName: format => `vue-hover-effect.${format}.js`
             },
             minify: 'terser',
             terserOptions: {
@@ -65,23 +64,22 @@ export default defineConfig(function (_a) {
                 ].filter(Boolean),
                 // make sure to externalize deps that should not be bundled
                 // into your library
-                input: {
-                    main: path.resolve(__dirname, "src/components/index.ts")
-                },
-                external: ['vue'],
-                output: {
-                    assetFileNames: function (assetInfo) {
-                        if (assetInfo.name === 'main.css')
-                            return 'vue-hover-effect.css';
-                        return assetInfo.name;
-                    },
-                    exports: "named",
-                    globals: {
-                        vue: 'Vue',
-                      // three: 'THREE',
-                      // gsap: 'gsap',
-                    },
-                },
+                // input: {
+                //   main: path.resolve(__dirname, "src/components/index.ts")
+                // },
+                // external: ['vue'],
+                // output: {
+                //   assetFileNames: (assetInfo) => {
+                //     if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
+                //     return assetInfo.name;
+                //   },
+                //   exports: "named",
+                //   globals: {
+                //     vue: 'Vue',
+                //     // three: 'THREE',
+                //     // gsap: 'gsap',
+                //   },
+                // },
             },
         },
     });

@@ -1,20 +1,25 @@
 <script setup lang="ts">
 import {ref, onMounted, watch, computed} from "vue"
 import HoverEffect from "src/lib/hover-effect.ts";
+import 'src/style/style.css'
 import {HoverEffectFnOptions} from "src/types";
-import 'src/style.css'
 // import Image1 from "/img/Img22.jpg"
 // import Image2 from "/img/Img21.jpg"
 // const HoverEffect = (await import('../lib/anchor-tune')).default
 
-interface PropTypes {
+type PropTypes = {
   height?: string
   width?: string
-  options: HoverEffectFnOptions
+  options?: HoverEffectFnOptions
 }
 
 const container = ref<HTMLElement | null>(null)
 const props = withDefaults(defineProps<PropTypes>(), {
+  options: () => ({
+    image1: '/img/Img22.jpg',
+    image2: '/img/Img21.jpg',
+    displacementImage: '/img/displacement/8.jpg'
+  }),
   height: '200px',
   width: '200px'
 })
