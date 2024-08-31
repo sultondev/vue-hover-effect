@@ -1,8 +1,18 @@
-import * as THREE from "three";
-import gsap from "gsap";
-import { HoverEffectFnOptions } from "src/types";
+import { Scene,
+OrthographicCamera,
+WebGLRenderer,
+TextureLoader,
+LinearFilter,
+VideoTexture,
+ShaderMaterial,
+Vector4,
+PlaneGeometry,
+Mesh } from "three";
 
-const HoverEffect = function(opts: HoverEffectFnOptions) {
+import { HoverEffectFnOptions } from "src/types";
+import gsap from "gsap"
+
+const HoverEffect = async function(opts: HoverEffectFnOptions) {
 	const vertex = `
 varying vec2 vUv;
 void main() {
@@ -87,8 +97,8 @@ void main() {
 		return;
 	}
 
-	const scene = new THREE.Scene();
-	const camera = new THREE.OrthographicCamera(
+	const scene = new Scene();
+	const camera = new OrthographicCamera(
 		parent.offsetWidth / -2,
 		parent.offsetWidth / 2,
 		parent.offsetHeight / 2,
@@ -99,7 +109,7 @@ void main() {
 
 	camera.position.z = 1;
 
-	const renderer = new THREE.WebGLRenderer({
+	const renderer = new WebGLRenderer({
 		antialias: false,
 		alpha: true,
 	});
@@ -107,7 +117,6 @@ void main() {
 	renderer.setPixelRatio(2.0);
 	renderer.setClearColor(0xffffff, 0.0);
 	renderer.setSize(parent.offsetWidth, parent.offsetHeight);
-	renderer.domElement.id
 	parent.appendChild(renderer.domElement);
 
 	const render = function() {
@@ -115,11 +124,11 @@ void main() {
 		renderer.render(scene, camera);
 	};
 
-	const loader = new THREE.TextureLoader();
+	const loader = new TextureLoader();
 	loader.crossOrigin = "";
 
 	const disp = loader.load(dispImage, render);
-	disp.magFilter = disp.minFilter = THREE.LinearFilter;
+	disp.magFilter = disp.minFilter = LinearFilter;
 
 	if (video) {
 		const animate = function() {
@@ -143,19 +152,19 @@ void main() {
 		video2.src = image2;
 		video2.load();
 
-		texture1 = new THREE.VideoTexture(video);
-		texture2 = new THREE.VideoTexture(video2);
-		texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
-		texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
+		texture1 = new VideoTexture(video);
+		texture2 = new VideoTexture(video2);
+		texture1.magFilter = texture2.magFilter = LinearFilter;
+		texture1.minFilter = texture2.minFilter = LinearFilter;
 
 		video2.addEventListener(
 			"loadeddata",
 			function() {
 				video2.play();
 
-				texture2 = new THREE.VideoTexture(video2);
-				texture2.magFilter = THREE.LinearFilter;
-				texture2.minFilter = THREE.LinearFilter;
+				texture2 = new VideoTexture(video2);
+				texture2.magFilter = LinearFilter;
+				texture2.minFilter = LinearFilter;
 
 				mat.uniforms.texture2.value = texture2;
 			},
@@ -167,10 +176,10 @@ void main() {
 			function() {
 				video.play();
 
-				texture1 = new THREE.VideoTexture(video);
+				texture1 = new VideoTexture(video);
 
-				texture1.magFilter = THREE.LinearFilter;
-				texture1.minFilter = THREE.LinearFilter;
+				texture1.magFilter = LinearFilter;
+				texture1.minFilter = LinearFilter;
 
 				mat.uniforms.texture1.value = texture1;
 			},
@@ -179,8 +188,8 @@ void main() {
 	} else {
 		texture1 = loader.load(image1, render);
 		texture2 = loader.load(image2, render);
-		texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
-		texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
+		texture1.magFilter = texture2.magFilter = LinearFilter;
+		texture1.minFilter = texture2.minFilter = LinearFilter;
 	}
 
 	let a1, a2;
@@ -194,7 +203,7 @@ void main() {
 	}
 
 	// @ts-ignore
-	const mat = new THREE.ShaderMaterial({
+	const mat = new ShaderMaterial({
 		uniforms: {
 			intensity1: {
 				value: intensity1
@@ -221,7 +230,7 @@ void main() {
 				value: disp
 			},
 			res: {
-				value: new THREE.Vector4(
+				value: new Vector4(
 					parent.offsetWidth,
 					parent.offsetHeight,
 					a1,
@@ -239,12 +248,12 @@ void main() {
 		opacity: 1.0
 	});
 
-	const geometry = new THREE.PlaneGeometry(
+	const geometry = new PlaneGeometry(
 		parent.offsetWidth,
 		parent.offsetHeight,
 		1
 	);
-	const object = new THREE.Mesh(geometry, mat);
+	const object = new Mesh(geometry, mat);
 	scene.add(object);
 
 	function transitionIn() {
@@ -282,7 +291,7 @@ void main() {
 			a1 = (parent.offsetWidth / parent.offsetHeight) * imageAspect;
 			a2 = 1;
 		}
-		object.material.uniforms.res.value = new THREE.Vector4(
+		object.material.uniforms.res.value = new Vector4(
 			parent.offsetWidth,
 			parent.offsetHeight,
 			a1,

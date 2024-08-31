@@ -1,46 +1,49 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.5",
+  "version": "0.0.6-beta.2",
   "type": "module",
   "files": [
     "dist/*",
     "dist-types/*"
   ],
-  "main": "./dist/vue-hover-effect-library-ts.umd.js",
-  "module": "./dist/vue-hover-effect-library-ts.es.js",
+  "main": "./dist/vue-hover-effect.umd.js",
+  "module": "./dist/vue-hover-effect.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-hover-effect-library-ts.es.js",
-      "require": "./dist/vue-hover-effect-library-ts.umd.js"
+      "import": "./dist/vue-hover-effect.es.js",
+      "require": "./dist/vue-hover-effect.umd.js"
     },
     "./dist/vue-hover-effect-library-ts.css": {
-      "import": "./dist/vue-hover-effect-library-ts.css",
-      "require": "./dist/vue-hover-effect-library-ts.css"
+      "import": "./dist/vue-hover-effect.css",
+      "require": "./dist/vue-hover-effect.css"
     }
   },
   "types": "./dist/main.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "analyze": "npx vite-bundle-visualizer"
   },
-
   "dependencies": {
-    "vue": "^3.4.37"
+    "vue": "^3.4.37",
+    "three": "0.150.1",
+    "gsap": "3.11.4"
   },
   "devDependencies": {
     "@types/node": "^18.19.47",
     "@types/three": "^0.167.2",
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
-    "gsap": "3.11.4",
-    "path": "^0.12.7",
     "postcss-import": "^16.1.0",
     "postcss-nested-ancestors": "^3.0.0",
     "rollup-plugin-typescript2": "^0.36.0",
-    "three": "0.150.1",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "path": "^0.12.7",
+    "terser": "^5.31.6",
     "typescript": "^5.5.4",
     "vite": "^5.4.1",
+    "vite-bundle-visualizer": "^1.2.1",
     "vite-plugin-checker": "^0.7.2",
     "vite-plugin-css-injected-by-js": "^3.5.1",
     "vite-plugin-dts": "^4.0.3",

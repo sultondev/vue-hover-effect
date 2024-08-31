@@ -23,7 +23,7 @@
     "outDir": "dist",
     "declarationDir": "dist",
     "paths": {
-      "@/*": [
+      "src/*": [
         "./src/*"
       ]
     }

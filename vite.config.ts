@@ -6,9 +6,10 @@ import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import * as path from 'path'
 import typescript2 from 'rollup-plugin-typescript2';
+import visualizer from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, mode })=>({
   plugins: [
     vue(),
     checker({
@@ -45,26 +46,41 @@ export default defineConfig({
       entry: "src/vue-hover-effect.ts",
       name: 'vue-hover-effect',
       formats: ["es", "cjs", "umd"],
-      fileName: format => `vue-hover-effect-library-ts.${format}.js`
+      fileName: format => `vue-hover-effect.${format}.js`
     },
-    // rollupOptions: {
-    //   // make sure to externalize deps that should not be bundled
-    //   // into your library
-    //   input: {
-    //     main: path.resolve(__dirname, "src/components/")
-    //   },
-    //   external: ['vue'],
-    //   output: {
-    //     assetFileNames: (assetInfo) => {
-    //       if (assetInfo.name === 'main.css') return 'vue-hover-effect-library.css';
-    //       return assetInfo.name;
-    //     },
-    //     exports: "named",
-    //     globals: {
-    //       vue: 'Vue',
-    //     },
-    //   },
-    // },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
+    rollupOptions: {
+      plugins: [
+        // Only include the visualizer plugin when running in 'analyze' mode
+        mode === 'analyze' && visualizer({
+          filename: './stats.html',
+          open: true,
+        }),
+      ].filter(Boolean),
+      // make sure to externalize deps that should not be bundled
+      // into your library
+      input: {
+        main: path.resolve(__dirname, "src/components/index.ts")
+      },
+      external: ['vue', 'three', 'gsap'],
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
+          return assetInfo.name;
+        },
+        exports: "named",
+        globals: {
+          vue: 'Vue',
+          three: 'THREE',
+          gsap: 'gsap',
+        },
+      },
+    },
   },
-})
+}))
 // define: { 'process.env.NODE_ENV': '"production"' },
