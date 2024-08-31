@@ -78,20 +78,3 @@ button:focus-visible {
   }
 }
 
-.container {
-  position: relative;
-  height:var(--box-height);
-  width: var(--box-width);
-  min-height: 100%;
-}
-.container__img {
-  width: inherit;
-  height: inherit;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  min-height: 200px;
-  min-width: 200px;
-  max-width: 100%;
-}

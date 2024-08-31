@@ -67,7 +67,7 @@ export default defineConfig(({ command, mode })=>({
       input: {
         main: path.resolve(__dirname, "src/components/index.ts")
       },
-      external: ['vue'],
+      external: ['vue', 'gsap', 'three'],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
@@ -76,8 +76,8 @@ export default defineConfig(({ command, mode })=>({
         exports: "named",
         globals: {
           vue: 'Vue',
-        //   three: 'THREE',
-        //   gsap: 'gsap',
+          three: 'THREE',
+          gsap: 'gsap',
         },
       },
     },
