@@ -74,11 +74,11 @@ export default defineConfig(({ command, mode })=>({
           return assetInfo.name;
         },
         exports: "named",
-        // globals: {
-        //   vue: 'Vue',
+        globals: {
+          vue: 'Vue',
         //   three: 'THREE',
         //   gsap: 'gsap',
-        // },
+        },
       },
     },
   },

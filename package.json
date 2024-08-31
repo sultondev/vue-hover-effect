@@ -1,6 +1,6 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.6-beta.3",
+  "version": "0.0.6-beta.4",
   "type": "module",
   "files": [
     "dist/*",
@@ -8,17 +8,7 @@
   ],
   "main": "./dist/vue-hover-effect.umd.js",
   "module": "./dist/vue-hover-effect.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/vue-hover-effect.es.js",
-      "require": "./dist/vue-hover-effect.umd.js"
-    },
-    "./dist/vue-hover-effect-library-ts.css": {
-      "import": "./dist/vue-hover-effect.css",
-      "require": "./dist/vue-hover-effect.css"
-    }
-  },
-  "types": "./dist/main.d.ts",
+  "types": "./dist/vue-hover-effect.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",

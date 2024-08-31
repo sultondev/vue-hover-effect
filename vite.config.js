@@ -46,8 +46,8 @@ export default defineConfig(function (_a) {
                 // Could also be a dictionary or array of multiple entry points
                 entry: "src/vue-hover-effect.ts",
                 name: 'vue-hover-effect',
-                // formats: ["es", "cjs", "umd"],
-                // fileName: format => `vue-hover-effect.${format}.js`
+                formats: ["es", "cjs", "umd"],
+                fileName: function (format) { return "vue-hover-effect.".concat(format, ".js"); }
             },
             minify: 'terser',
             terserOptions: {
@@ -68,7 +68,7 @@ export default defineConfig(function (_a) {
                 input: {
                     main: path.resolve(__dirname, "src/components/index.ts")
                 },
-                external: ['vue', 'three', 'gsap'],
+                external: ['vue'],
                 output: {
                     assetFileNames: function (assetInfo) {
                         if (assetInfo.name === 'main.css')
@@ -78,8 +78,8 @@ export default defineConfig(function (_a) {
                     exports: "named",
                     globals: {
                         vue: 'Vue',
-                        three: 'THREE',
-                        gsap: 'gsap',
+                        //   three: 'THREE',
+                        //   gsap: 'gsap',
                     },
                 },
             },
