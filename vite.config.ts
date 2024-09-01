@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
-import { URL, fileURLToPath } from 'node:url'
+import {URL, fileURLToPath, resolve} from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import checker from "vite-plugin-checker";
 import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-import * as path from 'path'
+// import * as path from 'path'
 import typescript2 from 'rollup-plugin-typescript2';
 import visualizer from "rollup-plugin-visualizer";
 
@@ -44,7 +44,8 @@ export default defineConfig(({ command, mode })=>({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: "src/vue-hover-effect.ts",
-      name: 'vue-hover-effect',
+      name: 'VueHoverEffect',
+      fileName: "vue-hover-effect"
       // formats: ["es", "cjs", "umd"],
       // fileName: format => `vue-hover-effect.${format}.js`
     },
@@ -67,19 +68,17 @@ export default defineConfig(({ command, mode })=>({
       // input: {
       //   main: path.resolve(__dirname, "src/components/index.ts")
       // },
-      // external: ['vue'],
-      // output: {
+      external: ['vue'],
+      output: {
       //   assetFileNames: (assetInfo) => {
       //     if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
       //     return assetInfo.name;
       //   },
       //   exports: "named",
-      //   globals: {
-      //     vue: 'Vue',
-      //     // three: 'THREE',
-      //     // gsap: 'gsap',
-      //   },
-      // },
+        globals: {
+          vue: 'Vue',
+        },
+      },
     },
   },
 }))

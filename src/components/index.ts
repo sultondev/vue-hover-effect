@@ -1,1 +1,2 @@
-export { default as HoverEffectContainer } from 'src/components/HoverEffectContainer.vue';
+import HoverEffectContainer from './components/HoverEffectContainer.vue'
+export default HoverEffectContainer

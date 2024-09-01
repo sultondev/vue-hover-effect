@@ -8,3 +8,11 @@ declare module '*.vue' {
 	const component: DefineComponent<{}, {}, any>
 	export default component
 }
+
+declare module 'HoverEffectContainer.vue' {
+	import type { DefineComponent } from 'vue'
+	import type {HoverEffectFnOptions} from "src/types";
+
+	const component: DefineComponent<HoverEffectFnOptions, {}, any>
+	export default component
+}
