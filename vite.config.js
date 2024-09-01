@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import checker from "vite-plugin-checker";
 import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-// import * as path from 'path'
+import { resolve } from 'path';
 import typescript2 from 'rollup-plugin-typescript2';
 import visualizer from "rollup-plugin-visualizer";
 // https://vitejs.dev/config/
@@ -44,10 +44,10 @@ export default defineConfig(function (_a) {
             // cssCodeSplit: true,
             lib: {
                 // Could also be a dictionary or array of multiple entry points
-                entry: "src/vue-hover-effect.ts",
+                entry: resolve(__dirname, "src/lib-main.ts"),
                 name: 'VueHoverEffect',
-                formats: ["es", "cjs", "umd"],
-                fileName: function (format) { return "vue-hover-effect.".concat(format, ".js"); }
+                fileName: 'vue-hover-effect'
+                // formats: ["es", "cjs", "umd"],
             },
             minify: 'terser',
             terserOptions: {
@@ -70,11 +70,8 @@ export default defineConfig(function (_a) {
                 // },
                 external: ['vue'],
                 output: {
-                    //   assetFileNames: (assetInfo) => {
-                    //     if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
-                    //     return assetInfo.name;
-                    //   },
-                    //   exports: "named",
+                    // Provide global variables to use in the UMD build
+                    // for externalized deps
                     globals: {
                         vue: 'Vue',
                     },
