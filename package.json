@@ -1,6 +1,6 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.7-beta.9",
+  "version": "0.0.8-stable.0",
   "files": ["dist"],
   "type": "module",
   "main": "./dist/vue-hover-effect.umd.cjs",
@@ -13,7 +13,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vue-tsc -b --declaration --emitDeclarationOnly && vite build",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
     "preview": "vite preview",
     "analyze": "npx vite-bundle-visualizer"
   },

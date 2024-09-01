@@ -7,7 +7,7 @@ import {HoverEffectFnOptions} from "src/types";
 // import Image2 from "/img/Img21.jpg"
 // const HoverEffect = (await import('../lib/anchor-tune')).default
 
-type PropTypes = {
+export type PropTypes = {
   height?: string
   width?: string
   options?: HoverEffectFnOptions
@@ -20,8 +20,8 @@ const props = withDefaults(defineProps<PropTypes>(), {
     image2: '/img/Img21.jpg',
     displacementImage: '/img/displacement/8.jpg'
   }),
-  height: '200px',
-  width: '200px'
+  height: '100%',
+  width: '100%'
 })
 
 onMounted(()=> {

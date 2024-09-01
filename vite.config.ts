@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import {URL, fileURLToPath} from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import checker from "vite-plugin-checker";
-import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import {resolve} from 'path'
 import typescript2 from 'rollup-plugin-typescript2';
@@ -14,9 +13,6 @@ export default defineConfig(({ command, mode })=>({
     vue(),
     checker({
       vueTsc: true,
-    }),
-    dts({
-      insertTypesEntry: true,
     }),
     cssInjectedByJsPlugin(),
     typescript2({
