@@ -1,10 +1,11 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.8-stable.0",
+  "version": "0.0.8-stable.1",
   "files": ["dist"],
   "type": "module",
   "main": "./dist/vue-hover-effect.umd.cjs",
   "module": "./dist/vue-hover-effect.js",
+  "types": "./dist/lib-main.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-hover-effect.js",
