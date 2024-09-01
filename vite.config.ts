@@ -67,16 +67,16 @@ export default defineConfig(({ command, mode })=>({
       // input: {
       //   main: path.resolve(__dirname, "src/components/index.ts")
       // },
-      external: ['vue'],
+      // external: ['vue'],
       output: {
       //   assetFileNames: (assetInfo) => {
       //     if (assetInfo.name === 'main.css') return 'vue-hover-effect.css';
       //     return assetInfo.name;
       //   },
       //   exports: "named",
-        globals: {
-          vue: 'Vue',
-        },
+      //   globals: {
+      //     vue: 'Vue',
+      //   },
       },
     },
   },
