@@ -46,8 +46,8 @@ export default defineConfig(function (_a) {
                 // Could also be a dictionary or array of multiple entry points
                 entry: "src/vue-hover-effect.ts",
                 name: 'VueHoverEffect',
-                fileName: "vue-hover-effect"
-                // formats: ["es", "cjs", "umd"],
+                fileName: "vue-hover-effect",
+                formats: ["es", "cjs", "umd"],
                 // fileName: format => `vue-hover-effect.${format}.js`
             },
             minify: 'terser',
