@@ -43,11 +43,9 @@ export default defineConfig(function (_a) {
         build: {
             // cssCodeSplit: true,
             lib: {
-                // Could also be a dictionary or array of multiple entry points
                 entry: resolve(__dirname, "src/lib-main.ts"),
                 name: 'VueHoverEffect',
                 fileName: 'vue-hover-effect'
-                // formats: ["es", "cjs", "umd"],
             },
             minify: 'terser',
             terserOptions: {
@@ -63,11 +61,6 @@ export default defineConfig(function (_a) {
                         open: true,
                     }),
                 ].filter(Boolean),
-                // make sure to externalize deps that should not be bundled
-                // into your library
-                // input: {
-                //   main: path.resolve(__dirname, "src/components/index.ts")
-                // },
                 external: ['vue'],
                 output: {
                     // Provide global variables to use in the UMD build
@@ -80,4 +73,3 @@ export default defineConfig(function (_a) {
         },
     });
 });
-// define: { 'process.env.NODE_ENV': '"production"' },
