@@ -1,12 +1,12 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.7-beta.6",
+  "version": "0.0.7-beta.7",
   "files": [
     "dist/*",
     "dist-types/*"
   ],
   "type": "module",
-  "main": "./dist/vue-hover-effect.umd.js",
+  "main": "./dist/vue-hover-effect.cjs.js",
   "module": "./dist/vue-hover-effect.es.js",
   "types": "./dist/vue-hover-effect.d.ts",
   "scripts": {
