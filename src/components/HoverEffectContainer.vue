@@ -7,14 +7,13 @@ import {HoverEffectFnOptions} from "src/types";
 // import Image2 from "/img/Img21.jpg"
 // const HoverEffect = (await import('../lib/anchor-tune')).default
 
-export type PropTypes = {
+
+const container = ref<HTMLElement | null>(null)
+const props = withDefaults(defineProps<{
   height?: string
   width?: string
   options?: HoverEffectFnOptions
-}
-
-const container = ref<HTMLElement | null>(null)
-const props = withDefaults(defineProps<PropTypes>(), {
+}>(), {
   options: () => ({
     image1: '/img/Img22.jpg',
     image2: '/img/Img21.jpg',

@@ -1,6 +1,6 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.8-stable.1",
+  "version": "0.0.8-stable.2",
   "files": ["dist"],
   "type": "module",
   "main": "./dist/vue-hover-effect.umd.cjs",
