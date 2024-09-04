@@ -1,6 +1,6 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.8-stable.2",
+  "version": "0.0.8-stable.3",
   "files": ["dist"],
   "type": "module",
   "main": "./dist/vue-hover-effect.umd.cjs",
@@ -9,7 +9,8 @@
   "exports": {
     ".": {
       "import": "./dist/vue-hover-effect.js",
-      "require": "./dist/vue-hover-effect.umd.cjs"
+      "require": "./dist/vue-hover-effect.umd.cjs",
+      "types": "./dist/components/HoverEffectContainer.vue.d.ts"
     }
   },
   "scripts": {
