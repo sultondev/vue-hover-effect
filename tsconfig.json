@@ -1,47 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "jsx": "preserve",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "useDefineForClassFields": true,
+    "ignoreDeprecations": "5.0",
+    "isolatedModules": false,
+    "importsNotUsedAsValues": "remove",
+    "outDir": "./dist-types",
     "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "outDir": "dist",
-    "declarationDir": "dist",
     "paths": {
-      "src/*": [
-        "./src/*"
-      ]
-    }
+      "src/*": ["./src/*"]
+    },
   },
   "references": [
     { "path": "./tsconfig.node.json" }
   ],
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "public/**/*.jpg",
     "public/**/*.png"
   ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "ESNext",
-      "moduleResolution": "node"
-    }
-  }
+
 }
