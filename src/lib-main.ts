@@ -1,5 +1,5 @@
 import * as vue from 'vue'
-import HoverEffectContainer from 'src/components/HoverEffectContainer.vue'
-import 'src/style/style.css'
+import HoverEffectContainer from './components/HoverEffectContainer.vue'
+import './style/style.css'
 
 export { HoverEffectContainer, vue }
