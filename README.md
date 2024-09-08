@@ -1,4 +1,4 @@
-[Demo](https://vue-hover-effect.vercel.app/) | Soon will be playground
+[Demo](https://vue-hover-effect.vercel.app/)
 
 # Vite js was used to built this library
 Vue JS + TypeScript + Vite JS
@@ -12,3 +12,4 @@ This library was built on top of [hover-effect](https://www.npmjs.com/package/ho
 
 His [hover-effect](https://www.npmjs.com/package/hover-effect) package
 
+# vue-hover-effect.xyz
