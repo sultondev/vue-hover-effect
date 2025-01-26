@@ -1,67 +1,26 @@
 {
   "name": "vue-hover-effect",
-  "version": "0.0.9-alpha.7",
-  "files": [
-    "dist",
-    "dist-types"
-  ],
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
-  "main": "./dist/vue-hover-effect.umd.cjs",
-  "types": "./dist-types/lib-main.d.ts",
   "scripts": {
-    "dev": "vite --host",
-    "build": "run-p build-only",
-    "preview": "vite preview",
-    "build-only": "vite build && rimraf dist/vue-hover-effect.js",
-    "build:lib": "run-p build-only build:types",
-    "type-check": "vue-tsc --noEmit",
-    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
-    "prebuild": "rimraf dist dist-types"
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "3.11.4",
-    "three": "0.150.1",
-    "vue": "^3.4.37"
+    "hover-effect": "^1.2.1",
+    "vue": "^3.5.13"
   },
-  "keywords": [
-    "vue",
-    "hover-effect",
-    "hover",
-    "effect",
-    "vue hover effect",
-    "vue3",
-    "nuxt"
-  ],
-  "author": {
-    "email": "sultondeveloper@gmail.com",
-    "name": "Sultonkhon",
-    "url": "https://sulton.dev/"
-  },
-  "bugs": {
-    "url": "https://github.com/sultondev/vue-hover-effect/issues",
-    "email": "sultondeveloper@gmail.com"
-  },
-  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^18.19.47",
-    "@types/three": "^0.167.2",
-    "@vitejs/plugin-vue": "^5.1.2",
-    "autoprefixer": "^10.4.20",
-    "npm-run-all": "^4.1.5",
-    "path": "^0.12.7",
-    "postcss-import": "^16.1.0",
-    "postcss-nested-ancestors": "^3.0.0",
-    "rimraf": "^6.0.1",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "rollup-plugin-visualizer": "^5.12.0",
-    "terser": "^5.31.6",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.1",
-    "vite-bundle-visualizer": "^1.2.1",
-    "vite-plugin-checker": "^0.7.2",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
-    "vite-plugin-dts": "^4.0.3",
-    "vite-tsconfig-paths": "^5.0.1",
-    "vue-tsc": "^2.1.6"
+    "@types/three": "^0.149.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "gsap": "^3.11.4",
+    "three": "^0.149.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.5.0",
+    "vue-tsc": "^2.2.0"
   }
 }
