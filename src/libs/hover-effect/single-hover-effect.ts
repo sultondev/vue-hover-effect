@@ -26,6 +26,7 @@ export interface SingleHoverEffectOptions {
 export interface SingleHoverEffectController {
     next: () => void;     // Go from image1 → image2
     previous: () => void; // Go from image2 → image1
+    resize: (parentOffsetWidth?: number, parentOffsetHeight?: number) => void;
 }
 
 /**
@@ -203,12 +204,16 @@ export function createSingleHoverEffect(
     let a1: number = 1;
     let a2: number = 1;
 
-    function calcAspect() {
-        if (parent.offsetHeight / parent.offsetWidth < imagesRatio) {
+    function calcAspect(parentOffsetWidth?: number, parentOffsetHeight?: number) {
+        const offsetWidth = parentOffsetWidth || parent.offsetWidth;
+        const offsetHeight = parentOffsetHeight || parent.offsetHeight;
+
+
+        if (offsetHeight / offsetWidth < imagesRatio) {
             a1 = 1;
-            a2 = (parent.offsetHeight / parent.offsetWidth) / imagesRatio;
+            a2 = (offsetHeight / offsetWidth) / imagesRatio;
         } else {
-            a1 = (parent.offsetWidth / parent.offsetHeight) * imagesRatio;
+            a1 = (offsetWidth / offsetHeight) * imagesRatio;
             a2 = 1;
         }
     }
@@ -274,23 +279,26 @@ export function createSingleHoverEffect(
         parent.addEventListener("touchend", transitionOut);
     }
 
-    // Resize handling
-    window.addEventListener("resize", () => {
-        renderer.setSize(parent.offsetWidth, parent.offsetHeight);
-        calcAspect();
+    function handleResize(parentOffsetWidth?: number, parentOffsetHeight?: number) {
+        const offsetWidth = parentOffsetWidth || parent.offsetWidth;
+        const offsetHeight = parentOffsetHeight || parent.offsetHeight;
+        renderer.setSize(offsetWidth, offsetHeight);
+        calcAspect(offsetWidth, offsetHeight);
         material.uniforms.res.value.set(
-            parent.offsetWidth,
-            parent.offsetHeight,
-            a1,
-            a2
+            offsetWidth, offsetHeight, a1, a2
         );
-        mesh.geometry = new THREE.PlaneGeometry(parent.offsetWidth, parent.offsetHeight, 1);
+        mesh.geometry = new THREE.PlaneGeometry(
+            offsetWidth, offsetHeight, 1
+        );
         render();
-    });
+    }
+    // Resize handling
+    window.addEventListener("resize", () => handleResize());
 
     // Return control methods
     return {
         next: transitionIn,     // image1 → image2
-        previous: transitionOut // image2 → image1
+        previous: transitionOut, // image2 → image1
+        resize: handleResize
     };
 }

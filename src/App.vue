@@ -1,27 +1,23 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import HoverEffectContainer from "./components/HoverEffectContainer.vue";
+import SingleHoverEffect from "./components/SingleHoverEffect.vue";
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-  <HoverEffectContainer>
-    <template #controllers="{funcs}" >
-      <button @click="funcs.goPrev()">Prev</button>
-      <button @click="funcs.goNext()">Next</button>
-    </template>
-  </HoverEffectContainer>
+  <SingleHoverEffect distortion-class="my-b">
+<!--    <template #controllers="{funcs}" >-->
+<!--      <button @click="funcs.goPrev()">Prev</button>-->
+<!--      <button @click="funcs.goNext()">Next</button>-->
+<!--    </template>-->
+  </SingleHoverEffect>
 </template>
 
-<style scoped>
+<style >
+.my-b {
+  width: 400px !important;
+  height: 400px !important;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;

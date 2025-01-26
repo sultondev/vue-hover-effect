@@ -160,6 +160,14 @@ export function createMultiImageEffect(
             angle2: { value: angle2 },
             intensity1: { value: intensity1 },
             intensity2: { value: intensity2 },
+            res: {
+                value: new THREE.Vector4(
+                    parent.offsetWidth,
+                    parent.offsetHeight,
+                    a1,
+                    a2
+                ),
+            },
         },
         vertexShader,
         fragmentShader,
@@ -178,6 +186,10 @@ export function createMultiImageEffect(
     window.addEventListener("resize", () => {
         renderer.setSize(parent.offsetWidth, parent.offsetHeight);
         computeAspect();
+        // TODO: implement aspect ratio
+        // material.uniforms.res.value.set(
+        //     offsetWidth, offsetHeight, a1, a2
+        // );
         mesh.geometry = new THREE.PlaneGeometry(parent.offsetWidth, parent.offsetHeight, 1);
         render();
     });
