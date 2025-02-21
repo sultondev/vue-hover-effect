@@ -1,7 +1,7 @@
 {
   "name": "vue-hover-effect",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.9-alpha.8",
   "type": "module",
   "main": "dist/vue-hover-effect.umd.js",
   "module": "dist/vue-hover-effect.es.js",
@@ -10,9 +10,32 @@
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/vue-hover-effect.es.js",
-      "require": "./dist/vue-hover-effect.umd.js"
+      "require": "./dist/vue-hover-effect.umd.js",
+      "default": "./dist/vue-hover-effect.es.js"
     }
   },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue",
+    "hover-effect",
+    "hover",
+    "effect",
+    "vue hover effect",
+    "vue3",
+    "nuxt"
+  ],
+  "author": {
+    "email": "sultondeveloper@gmail.com",
+    "name": "Sultonkhon",
+    "url": "https://sulton.dev/"
+  },
+  "bugs": {
+    "url": "https://github.com/sultondev/vue-hover-effect/issues",
+    "email": "sultondeveloper@gmail.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
