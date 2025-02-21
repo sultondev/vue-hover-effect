@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      hover-effect:
-        specifier: ^1.2.1
-        version: 1.2.1
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -543,9 +540,6 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
-
-  hover-effect@1.2.1:
-    resolution: {integrity: sha512-13PjirDy/CKuMkQMzgyM04lWkizhTw90PTUKSbCr+hHG63u8B53VVNY5idpkTOnsZlhq4Poz/qZH/N/BI9N/WA==}
 
   import-lazy@4.0.0:
     resolution: {integrity: sha512-rKtvo6a868b5Hu3heneU+L4yEQ4jYKLtjpnPeUdK7h0yzXGmyBTypknlkCvHFBqfX9YlorEiMM6Dnq/5atfHkw==}
@@ -1204,11 +1198,6 @@ snapshots:
       function-bind: 1.1.2
 
   he@1.2.0: {}
-
-  hover-effect@1.2.1:
-    dependencies:
-      gsap: 3.11.4
-      three: 0.149.0
 
   import-lazy@4.0.0: {}
 

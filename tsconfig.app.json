@@ -12,7 +12,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "dist/types"
   },
-  "include": ["src/**/*", "src/types", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*", "src/types", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist", "src/App.vue", "src/main.ts", "public/**"]
 }
