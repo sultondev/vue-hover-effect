@@ -1,24 +1,7 @@
 {
-  "compilerOptions": {
-    "ignoreDeprecations": "5.0",
-    "isolatedModules": false,
-    "importsNotUsedAsValues": "remove",
-    "outDir": "./dist-types",
-    "baseUrl": ".",
-    "allowImportingTsExtensions": true,
-    "paths": {
-      "src/*": ["./src/*"]
-    },
-  },
+  "files": [],
   "references": [
+    { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "public/**/*.jpg",
-    "public/**/*.png"
-  ],
-
+  ]
 }

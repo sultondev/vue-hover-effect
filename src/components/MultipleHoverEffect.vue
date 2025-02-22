@@ -1,13 +1,8 @@
-<template>
-  <!-- The container that will hold our effect -->
-  <div ref="container" class="distortion-container" />
-  <slot name="controllers" :funcs="{goNext,goPrev}"></slot>
-</template>
-
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import {
-   createSingleHoverEffect, type MultiImageEffectController,
+  createMultiImageEffect,
+  type MultiImageEffectController,
 } from "../libs/hover-effect/index.ts"
 const container = ref<HTMLDivElement | null>(null);
 
@@ -19,17 +14,14 @@ onMounted(() => {
   // Make sure the ref has a value (the div is in the DOM now).
   if (!container.value) return;
 
-  effectController = createSingleHoverEffect({
+  effectController = createMultiImageEffect({
     parent: container.value,
-    // images: [
-    //     '/lib-images/images/Img22.webp',
-    //     '/lib-images/images/Img21.webp',
-    //   '/lib-images/images/Img19.webp',
-    //   '/lib-images/images/Img18.webp',
-    //
-    // ],
-    image1: '/lib-images/images/Img22.webp',
-    image2: '/lib-images/images/Img21.webp',
+    images: [
+      '/lib-images/images/Img22.webp',
+      '/lib-images/images/Img21.webp',
+      '/lib-images/images/Img19.webp',
+      '/lib-images/images/Img18.webp',
+    ],
     displacementImage: '/lib-images/displacements/13.webp',
     hover: true,           // or false if you want manual control
     speedIn: 0.8,
@@ -52,6 +44,13 @@ onUnmounted(() => {
   effectController = undefined;
 });
 </script>
+
+<template>
+  <!-- The container that will hold our effect -->
+  <div ref="container" class="distortion-container" />
+  <slot name="controllers" :funcs="{goNext,goPrev}"></slot>
+</template>
+
 
 <style scoped>
 .distortion-container {

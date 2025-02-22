@@ -1,71 +1,40 @@
 import { defineConfig } from 'vite'
-import {URL, fileURLToPath} from 'node:url'
 import vue from '@vitejs/plugin-vue'
-import checker from "vite-plugin-checker";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-import {resolve} from 'path'
-import visualizer from "rollup-plugin-visualizer";
-// import typescript2 from 'rollup-plugin-typescript2';
+import dts from "vite-plugin-dts";
 
-// https://vitejs.dev/config/
-export default defineConfig(({ command, mode })=>({
+// https://vite.dev/config/
+export default defineConfig({
   plugins: [
-    vue(),
-    checker({
-      vueTsc: true,
-    }),
-    cssInjectedByJsPlugin(),
-    // typescript2({
-    //   check: false,
-    //   include: ["src/components/**/*.vue"],
-    //   tsconfigOverride: {
-    //     compilerOptions: {
-    //       outDir: "dist-types",
-    //       sourceMap: true,
-    //       declaration: true,
-    //       declarationMap: true,
-    //     },
-    //   },
-    //   exclude: ["vite.config.ts"]
-    // })
+      vue(),
+      dts({
+        // output dir for dts files
+        entryRoot: "src",
+        outDir: "dist/types",
+        insertTypesEntry: true,
+        tsconfigPath: './tsconfig.app.json'
+      })
   ],
-  resolve: {
-    alias: {
-      src: fileURLToPath(new URL('src', import.meta.url)),
-      public: fileURLToPath(new URL('public', import.meta.url)),
-      formats: ["umd", "umd"]
-    },
-  },
-  define: { 'process.env.NODE_ENV': '"production"' },
   build: {
-    // cssCodeSplit: true,
     lib: {
-      entry: resolve(__dirname, "src/lib-main.ts"),
-      name: 'VueHoverEffect',
-      fileName: 'vue-hover-effect'
+      // Your main entry
+      entry: "src/index.ts",
+      name: "VueHoverEffect",
+      fileName: (format) => `vue-hover-effect.${format}.js`,
     },
-    // minify: 'terser',
-    // terserOptions: {
-    //   compress: {
-    //     drop_console: true,
-    //   },
-    // },
     rollupOptions: {
-      plugins: [
-        // Only include the visualizer plugin when running in 'analyze' mode
-        mode === 'analyze' && visualizer({
-          filename: './stats.html',
-          open: true,
-        }),
-      ].filter(Boolean),
-      external: ['vue'],
+      // Make sure to externalize deps that shouldn't be bundled
+      external: ["vue", "three", "gsap"],
       output: {
-        // Provide global variables to use in the UMD build
-        // for externalized deps
+        // Provide global variables to use in UMD builds for these externals
         globals: {
-          vue: 'Vue',
+          vue: "Vue",
+          three: "THREE",
+          gsap: "gsap",
         },
       },
+      input: {
+        main: 'src/index.ts', // Explicitly define entry
+      },
     },
-  },
-}))
+  }
+})
