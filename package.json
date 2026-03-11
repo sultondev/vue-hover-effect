@@ -1,7 +1,7 @@
 {
   "name": "vue-hover-effect",
   "private": false,
-  "version": "0.0.9-alpha.9",
+  "version": "0.1.0-alpha",
   "type": "module",
   "main": "dist/vue-hover-effect.umd.js",
   "module": "dist/vue-hover-effect.es.js",
