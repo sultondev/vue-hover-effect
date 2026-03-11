@@ -1,7 +1,7 @@
 {
   "name": "vue-hover-effect",
   "private": false,
-  "version": "0.0.9-alpha.8",
+  "version": "0.0.9-alpha.9",
   "type": "module",
   "main": "dist/vue-hover-effect.umd.js",
   "module": "dist/vue-hover-effect.es.js",
@@ -12,6 +12,9 @@
       "import": "./dist/vue-hover-effect.es.js",
       "require": "./dist/vue-hover-effect.umd.js",
       "default": "./dist/vue-hover-effect.es.js"
+    },
+    "./types": {
+      "types": "./dist/types/types/index.d.ts"
     }
   },
   "files": [

@@ -1,26 +1,7 @@
 // createMultiImageEffect.ts
 import * as THREE from "three";
 import gsap from "gsap";
-
-export interface MultiImageEffectOptions {
-    parent: HTMLElement;          // Container element
-    displacementImage: string;    // Path to displacement map
-    images: string[];             // Array of image URLs
-    imagesRatio?: number;         // Default: 1.0
-    speedIn?: number;             // Default: 1.2
-    speedOut?: number;            // Default: 1.0
-    intensity1?: number;          // Distortion intensity for the "current" image
-    intensity2?: number;          // Distortion intensity for the "next" image
-    angle1?: number;              // Angle for the current image
-    angle2?: number;              // Angle for the next image
-    hover?: boolean;              // If true, we do transitions on hover
-    easing?: string;              // GSAP easing (default: 'expo.out')
-}
-
-export interface MultiImageEffectController {
-    next: () => void;      // Advance to the next image (cycling)
-    previous: () => void;  // Go to the previous image (cycling)
-}
+import type {MultiImageEffectController, MultiImageEffectOptions} from "../../types";
 
 export function createMultiImageEffect(
     opts: MultiImageEffectOptions

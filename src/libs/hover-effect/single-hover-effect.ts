@@ -1,36 +1,13 @@
 // createSingleHoverEffect.ts
 import * as THREE from "three";
 import gsap from "gsap";
+import type {SingleHoverEffectController, SingleHoverEffectOptions} from "../../types";
 
-export interface SingleHoverEffectOptions {
-    parent: HTMLElement;          // The container element
-    displacementImage: string;    // Path to the displacement map
-    image1: string;               // Path (or video src) for the first image
-    image2: string;               // Path (or video src) for the second image
-
-    imagesRatio?: number;         // Default: 1.0
-    intensity?: number;           // Overall intensity fallback
-    intensity1?: number;          // Distortion intensity on the first image
-    intensity2?: number;          // Distortion intensity on the second image
-    angle?: number;               // Common angle fallback (default: Math.PI/4)
-    angle1?: number;              // Angle for the first image
-    angle2?: number;              // Angle for the second image
-    speed?: number;               // Fallback speed if speedIn/out are not provided
-    speedIn?: number;             // Default: 1.6
-    speedOut?: number;            // Default: 1.2
-    hover?: boolean;              // If true, transitions on mouseenter/out
-    easing?: string;              // GSAP easing (default: 'expo.out')
-    video?: boolean;              // If true, image1/image2 are used as <video> sources
-}
-
-export interface SingleHoverEffectController {
-    next: () => void;     // Go from image1 → image2
-    previous: () => void; // Go from image2 → image1
-    resize: (parentOffsetWidth?: number, parentOffsetHeight?: number) => void;
-}
 
 /**
  * A typed version of Robin Delaporte’s original two-image hover effect.
+ * @param {SingleHoverEffectOptions} opts
+ * @return SingleHoverEffectController
  */
 export function createSingleHoverEffect(
     opts: SingleHoverEffectOptions

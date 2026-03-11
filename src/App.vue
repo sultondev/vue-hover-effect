@@ -3,7 +3,15 @@ import SingleHoverEffect from "./components/SingleHoverEffect.vue";
 </script>
 
 <template>
-  <SingleHoverEffect distortion-class="my-b">
+  <SingleHoverEffect
+    image1="/lib-images/images/Img22.webp"
+    image2="/lib-images/images/Img21.webp"
+    displacement-image="/lib-images/displacements/3.webp"
+    distortion-class="my-b"
+    :hover="true"
+    :speed-in="0.8"
+    :speed-out="0.8"
+  >
 <!--    <template #controllers="{funcs}" >-->
 <!--      <button @click="funcs.goPrev()">Prev</button>-->
 <!--      <button @click="funcs.goNext()">Next</button>-->
@@ -11,23 +19,16 @@ import SingleHoverEffect from "./components/SingleHoverEffect.vue";
   </SingleHoverEffect>
 </template>
 
-<style >
+<style>
 .my-b {
-  width: 400px !important;
-  height: 400px !important;
+  width: 400px;
+  height: 400px;
 }
 
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+@media (max-width: 1400px) {
+  .my-b {
+    width: 800px;
+    height: 800px;
+  }
 }
 </style>
