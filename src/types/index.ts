@@ -20,7 +20,7 @@ export type HoverEffectFnOptions = {
 
 export interface SingleHoverEffectOptions {
     parent: HTMLElement;          // The container element
-    displacementImage: string;    // Path to the displacement map
+    displacementImage?: string;   // Path to the displacement map (defaults to CDN-hosted map)
     image1: string;               // Path (or video src) for the first image
     image2: string;               // Path (or video src) for the second image
 
@@ -49,7 +49,7 @@ export interface SingleHoverEffectController {
 
 export interface MultiImageEffectOptions {
     parent: HTMLElement;          // Container element
-    displacementImage: string;    // Path to displacement map
+    displacementImage?: string;   // Path to displacement map (defaults to CDN-hosted map)
     images: string[];             // Array of image URLs
     imagesRatio?: number;         // Default: 1.0
     speedIn?: number;             // Default: 1.2

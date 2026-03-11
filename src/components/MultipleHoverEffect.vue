@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import type { MultiImageEffectController, MultiImageEffectProps } from "../types";
+import { DEFAULT_DISPLACEMENT } from "../constants/cdn";
 
 interface Props extends MultiImageEffectProps {
   distortionClass?: string;
@@ -21,7 +22,7 @@ onMounted(async () => {
   effectController = createMultiImageEffect({
     parent: container.value,
     images: props.images,
-    displacementImage: props.displacementImage,
+    displacementImage: props.displacementImage ?? DEFAULT_DISPLACEMENT,
     imagesRatio: props.imagesRatio,
     speedIn: props.speedIn,
     speedOut: props.speedOut,

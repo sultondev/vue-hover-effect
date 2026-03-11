@@ -123,7 +123,7 @@ Use the `controllers` slot to wire up your own buttons. The slot exposes `funcs.
 |---|---|---|---|---|
 | `image1` | `string` | Yes | — | URL of the first image |
 | `image2` | `string` | Yes | — | URL of the second image |
-| `displacementImage` | `string` | Yes | — | URL of the displacement map texture |
+| `displacementImage` | `string` | No | CDN map #1 | URL of the displacement map texture |
 | `imagesRatio` | `number` | No | `1.0` | Aspect ratio of the images (width / height) |
 | `intensity` | `number` | No | `1` | Distortion intensity fallback for both images |
 | `intensity1` | `number` | No | `1` | Distortion intensity for the first image |
@@ -189,7 +189,7 @@ import { MultipleHoverEffect } from 'vue-hover-effect'
 | Prop | Type | Required | Default | Description |
 |---|---|---|---|---|
 | `images` | `string[]` | Yes | — | Array of image URLs (minimum 2) |
-| `displacementImage` | `string` | Yes | — | URL of the displacement map texture |
+| `displacementImage` | `string` | No | CDN map #1 | URL of the displacement map texture |
 | `imagesRatio` | `number` | No | `1.0` | Aspect ratio of the images (width / height) |
 | `intensity1` | `number` | No | `1` | Distortion intensity for the current image |
 | `intensity2` | `number` | No | `1` | Distortion intensity for the next image |
@@ -200,6 +200,49 @@ import { MultipleHoverEffect } from 'vue-hover-effect'
 | `hover` | `boolean` | No | `false` | Advance to next image on hover |
 | `easing` | `string` | No | `'expo.out'` | GSAP easing string |
 | `distortionClass` | `string` | No | `''` | CSS class applied to the canvas container element |
+
+---
+
+## Displacement maps
+
+The `displacementImage` prop is optional. When omitted, the component uses a built-in displacement map served from jsDelivr CDN — no setup required.
+
+The package ships 16 displacement textures. You can reference any of them via the exported `DISPLACEMENT_URLS` array:
+
+```ts
+import { DISPLACEMENT_URLS } from 'vue-hover-effect'
+// DISPLACEMENT_URLS[0]  →  map #1  (default)
+// DISPLACEMENT_URLS[5]  →  map #6
+// ...up to DISPLACEMENT_URLS[15]
+```
+
+```vue
+<template>
+  <SingleHoverEffect
+    image1="/images/photo-a.webp"
+    image2="/images/photo-b.webp"
+    :displacement-image="DISPLACEMENT_URLS[4]"
+  />
+</template>
+```
+
+### Host displacement maps yourself
+
+If you prefer to serve the files locally (offline support, no CDN dependency), copy them from the package to your project's `public` folder:
+
+```bash
+cp -r node_modules/vue-hover-effect/dist/lib-images/displacements public/displacements
+```
+
+Then pass the local path:
+
+```vue
+<SingleHoverEffect
+  image1="/images/photo-a.webp"
+  image2="/images/photo-b.webp"
+  displacement-image="/displacements/3.webp"
+/>
+```
 
 ---
 
@@ -252,6 +295,7 @@ If you prefer an explicit client-only guarantee, Nuxt's built-in `<ClientOnly>` 
       image1="/images/photo-a.webp"
       image2="/images/photo-b.webp"
       displacement-image="/displacements/displacement.webp"
+      :hover="true"
     />
   </ClientOnly>
 </template>

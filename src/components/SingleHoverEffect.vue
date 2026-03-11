@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import type { SingleHoverEffectController, SingleHoverEffectProps } from "../types";
+import { DEFAULT_DISPLACEMENT } from "../constants/cdn";
 
 interface Props extends SingleHoverEffectProps {
   distortionClass?: string;
@@ -23,7 +24,7 @@ onMounted(async () => {
     parent: container.value,
     image1: props.image1,
     image2: props.image2,
-    displacementImage: props.displacementImage,
+    displacementImage: props.displacementImage ?? DEFAULT_DISPLACEMENT,
     imagesRatio: props.imagesRatio,
     intensity: props.intensity,
     intensity1: props.intensity1,

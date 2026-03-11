@@ -4,3 +4,4 @@ export { default as MultipleHoverEffect } from "./components/MultipleHoverEffect
 
 export * from "./libs/hover-effect";
 export * from "./types";
+export { DISPLACEMENT_URLS, DEFAULT_DISPLACEMENT } from "./constants/cdn";
