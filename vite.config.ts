@@ -1,31 +1,46 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from "vite-plugin-dts";
+import fs from 'node:fs'
+import path from 'node:path'
+
+function copyDisplacements() {
+  return {
+    name: 'copy-displacements',
+    apply: 'build' as const,
+    closeBundle() {
+      const src = path.resolve(__dirname, 'public/lib-images/displacements')
+      const dest = path.resolve(__dirname, 'dist/lib-images/displacements')
+      fs.mkdirSync(dest, { recursive: true })
+      for (const file of fs.readdirSync(src)) {
+        fs.copyFileSync(path.join(src, file), path.join(dest, file))
+      }
+    }
+  }
+}
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  publicDir: command === 'serve' ? 'public' : false,
   plugins: [
-      vue(),
-      dts({
-        // output dir for dts files
-        entryRoot: "src",
-        outDir: "dist/types",
-        insertTypesEntry: true,
-        tsconfigPath: './tsconfig.app.json'
-      })
+    vue(),
+    dts({
+      entryRoot: "src",
+      outDir: "dist/types",
+      insertTypesEntry: true,
+      tsconfigPath: './tsconfig.app.json'
+    }),
+    copyDisplacements(),
   ],
   build: {
     lib: {
-      // Your main entry
       entry: "src/index.ts",
       name: "VueHoverEffect",
       fileName: (format) => `vue-hover-effect.${format}.js`,
     },
     rollupOptions: {
-      // Make sure to externalize deps that shouldn't be bundled
       external: ["vue", "three", "gsap"],
       output: {
-        // Provide global variables to use in UMD builds for these externals
         globals: {
           vue: "Vue",
           three: "THREE",
@@ -33,8 +48,8 @@ export default defineConfig({
         },
       },
       input: {
-        main: 'src/index.ts', // Explicitly define entry
+        main: 'src/index.ts',
       },
     },
   }
-})
+}))
